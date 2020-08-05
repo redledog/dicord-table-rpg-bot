@@ -1,6 +1,12 @@
 #import sys
 
 
+commandID = {
+    1:'정보',
+    2:'이동',
+
+}
+
 # 잘못된 명령어입력시 작동하게할 함수
 def wrong_command():
     return '잘못된 명령어 입니다.'

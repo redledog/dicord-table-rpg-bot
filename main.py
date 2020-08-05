@@ -2,10 +2,12 @@ from discord.ext import commands
 from Player import Player
 import random
 import Util
-import ProcessError as PE
+import ProcessErr as PE
 
 
 client = commands.Bot(command_prefix='/')
+
+# TODO players json파일로 옮겨야함
 players = []
 
 
@@ -15,14 +17,16 @@ async def on_ready():
     print("Bot Ready!")
 
 
-@client.command('접속')
-async def connect(ctx):
+@client.command('캐릭터생성')
+async def create_character(ctx):
     if Util.exist_user(ctx.author, players):
-        hello_msg = Util.change_font_css(f'돌아오신것을 환영합니다 {ctx.author}님')
+        return
     else:
-        players.append(Player(ctx.author))
-        hello_msg = Util.change_font_css(f'첫 접속을 환영합니다 {ctx.author}님')
-    await ctx.send(hello_msg)
+        player = Player(ctx.author)
+        players.append(player)
+        msg = f'눈을 뜬 당신은 어느새 "{player.now_location}" 안에 있다는 것을 깨달았습니다. \n'
+        msg = msg + f'"{ctx.author.name}"... 어렴풋이 떠오르는 것은 당신의 이름뿐이었습니다.'
+    await ctx.send(Util.change_font_cs(msg))
 
 
 @client.command('이동')
@@ -37,11 +41,11 @@ async def roll_dice(ctx, arg=None):
         dice = random.randrange(1, 7)
     else:
         parse = Util.try_parse(int, arg)
-        if not parse[0]:
+        if not parse[0] or parse[1] < 2:
             return await ctx.send(PE.wrong_command())
         else:
             dice = random.randrange(1, parse[1]+1)
-    msg = f'{ctx.author}님이 주사위를 굴립니다.\n나온 수는 [{dice}] 입니다!'
+    msg = f'{ctx.author.name}님이 주사위를 굴립니다.\n나온 수는 [{dice}] 입니다!'
     msg = Util.change_font_css(msg)
     await ctx.send(msg)
 

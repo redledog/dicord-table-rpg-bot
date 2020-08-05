@@ -1,10 +1,10 @@
-import ProcessError as PE
+import ProcessErr as PE
 
 
 # 이미 존재하는 유저판별
 def exist_user(author, players):
     for player in players:
-        if player.userId == author:
+        if player.userId == author.id:
             return True
     return False
 
@@ -19,6 +19,15 @@ def try_parse(parse_type, arg):
     return True, parse_arg
 
 
-# 디스코드 내부기능 폰트관련 설정
+# region 디스코드 마크업 관련 함수들
 def change_font_css(msg):
-    return f'```css\n {msg}\n```'
+    return f'```css\n{msg}\n```'
+
+
+def change_font_cs(msg):
+    return f'```cs\n{msg}\n```'
+
+
+def change_font_diff(msg):
+    return f'```diff\n{msg}\n```'
+# endregion
