@@ -1,8 +1,7 @@
 from discord.ext import commands
 
 
-client = commands.Bot(command_prefix='!')
-
+client = commands.Bot(command_prefix='/')
 
 @client.event
 async def on_ready():
@@ -10,9 +9,9 @@ async def on_ready():
     print("Bot Ready!")
 
 
-@client.command()
-async def 접속(ctx):
-    await ctx.send('welcome')
+@client.command('접속')
+async def connect(ctx, arg):
+    await ctx.send(f'welcome {arg}')
 
 
 try:
