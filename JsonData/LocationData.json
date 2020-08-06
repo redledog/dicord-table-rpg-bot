@@ -1,0 +1,16 @@
+{
+	"NonBattleLocation" : [
+		{
+			"locationName" : "¸¶À»",
+			"connectedLocation" : [ "±³È¸", "ºÎµÔ°¡" ],
+			"liveNPC" : [ "°æºñ" ]
+		}
+	],
+	"BattleLocation" : [
+		{
+			"locationName" : "µÞ»ê",
+			"connectedLocation" : [ "½£¼Ó" ],
+			"liveMonster" : [ "¾ß»ýÁã" ]
+		}
+	]
+}

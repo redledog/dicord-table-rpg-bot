@@ -1,0 +1,46 @@
+{
+	"Servers" : [
+		{
+			"serverName" : "",
+			"Channel" : [
+				{
+					"chName" : "",
+					"UserList" : [
+						{
+							"userID" : "",
+							"level" : -1,
+							"curExp" : "",
+							"nextExp" : "",
+							"gold" : -1,
+							"nowLocation" : "",
+							"description" : "",
+							"baseStat" : {
+								"str" : -1,
+								"con" : -1,
+								"int" : -1,
+								"wis" : -1,
+								"agi" : -1,
+								"luk" : -1
+							},
+							"battleStat" : {
+								"curHP" : "",
+								"maxHP" : "",
+								"curMP" : "",
+								"maxMP" : "",
+								"atk" : "",
+								"magica" : "",
+								"defense" : "",
+								"magicResist" : "",
+								"crit" : "",
+								"critMult" : "",
+								"evade" : ""
+							},
+							"hasSkills" : [],
+							"inventory" : []
+						}
+					]
+				}
+			]
+		}
+	]
+}

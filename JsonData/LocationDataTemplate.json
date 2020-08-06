@@ -1,0 +1,16 @@
+{
+	"NonBattleLocation" : [
+		{
+			"locationName" : "<name>",
+			"connectedLocation" : [ "locationName", "locationName" ],
+			"liveNPC" : [ "npcName" ]
+		}
+	],
+	"BattleLocation" : [
+		{
+			"locationName" : "<name>",
+			"connectedLocation" : [ "locationName", "locationName" ],
+			"liveMonster" : [ "monsterName" ]
+		}
+	]
+}
