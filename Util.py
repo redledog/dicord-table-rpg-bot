@@ -1,4 +1,5 @@
 import ProcessErr as PE
+import json
 
 
 # 이미 존재하는 유저판별
@@ -31,3 +32,9 @@ def change_font_cs(msg):
 def change_font_diff(msg):
     return f'```diff\n{msg}\n```'
 # endregion
+
+
+# JSON 불러오기
+def get_json_data(file_name):
+    with open(f'./JsonData/{file_name}.json', 'r') as json_data:
+        return json.load(json_data)

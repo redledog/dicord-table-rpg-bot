@@ -2,6 +2,7 @@ from discord.ext import commands
 from Player import Player
 import random
 import Util
+import Dialog
 import ProcessErr as PE
 
 
@@ -13,6 +14,10 @@ players = []
 
 @client.event
 async def on_ready():
+    # client.get_all_channels()
+    # client.guilds -> guilds(list) -> text_channels(list) -> members 안에 user
+    # TODO 여기서 서버별 폴더 만들어주기 (유저데이터 넣을거임)
+    client.remove_command('help')
     print(client.user.id)
     print("Bot Ready!")
 
@@ -24,8 +29,7 @@ async def create_character(ctx):
     else:
         player = Player(ctx.author)
         players.append(player)
-        msg = f'눈을 뜬 당신은 어느새 "{player.now_location}" 안에 있다는 것을 깨달았습니다. \n'
-        msg = msg + f'"{ctx.author.name}"... 어렴풋이 떠오르는 것은 당신의 이름뿐이었습니다.'
+        msg = Dialog.get_dialog('prologue').format(player.now_location, ctx.author.name)
     await ctx.send(Util.change_font_cs(msg))
 
 
@@ -45,7 +49,7 @@ async def roll_dice(ctx, arg=None):
             return await ctx.send(PE.wrong_command())
         else:
             dice = random.randrange(1, parse[1]+1)
-    msg = f'{ctx.author.name}님이 주사위를 굴립니다.\n나온 수는 [{dice}] 입니다!'
+    msg = Dialog.get_dialog('rollDice').format(ctx.author.name, dice)
     msg = Util.change_font_css(msg)
     await ctx.send(msg)
 

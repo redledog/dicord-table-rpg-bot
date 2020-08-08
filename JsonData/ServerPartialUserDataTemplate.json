@@ -12,9 +12,9 @@
 							"curExp" : "",
 							"nextExp" : "",
 							"gold" : -1,
-							"nowLocation" : "",
+							"now_location" : "",
 							"description" : "",
-							"baseStat" : {
+							"base_stat" : {
 								"str" : -1,
 								"con" : -1,
 								"int" : -1,
@@ -22,7 +22,7 @@
 								"agi" : -1,
 								"luk" : -1
 							},
-							"battleStat" : {
+							"combat_stat" : {
 								"curHP" : "",
 								"maxHP" : "",
 								"curMP" : "",
