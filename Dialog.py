@@ -8,14 +8,3 @@ def get_dialog(dialog_id):
     return Util.get_json_data('DialogData')[dialog_id]
     # return dialog_data[dialog_id]
 
-
-# def init_dialog():
-#     with open('./JsonData/DialogData.json', 'r') as json_data:
-#         return json.load(json_data)
-#
-#
-# def get_dialog_data():
-#     with open('./JsonData/DialogData.json', 'r') as json_data:
-#         return json.load(json_data)
-
-# dialog_data = init_dialog()
