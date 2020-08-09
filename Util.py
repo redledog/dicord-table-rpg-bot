@@ -1,13 +1,6 @@
 import ProcessErr as PE
 import json
-
-
-# 이미 존재하는 유저판별
-def exist_user(author, players):
-    for player in players:
-        if player.userId == author.id:
-            return True
-    return False
+import os
 
 
 # 특정타입으로 parsing 하는 함수
@@ -38,3 +31,22 @@ def change_font_diff(msg):
 def get_json_data(file_name):
     with open(f'./JsonData/{file_name}.json', 'r') as json_data:
         return json.load(json_data)
+
+
+# 폴더 생성 함수
+def create_folder(directory):
+    try:
+        if not check_file_exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        PE.show_error(OSError)
+
+
+# 파일 존재 여부 확인 함수
+def check_file_exists(path):
+    return os.path.exists(path)
+
+
+# Json Dump 랩핑
+def json_dump(obj, fp):
+    json.dump(obj, fp, indent=4, ensure_ascii=False)

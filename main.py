@@ -1,5 +1,6 @@
 from discord.ext import commands
 from Player import Player
+import Player as _Player
 import random
 import Util
 import Dialog
@@ -8,15 +9,12 @@ import ProcessErr as PE
 
 client = commands.Bot(command_prefix='/')
 
-# TODO players json파일로 옮겨야함
-players = []
-
 
 @client.event
 async def on_ready():
-    # client.get_all_channels()
-    # client.guilds -> guilds(list) -> text_channels(list) -> members 안에 user
-    # TODO 여기서 서버별 폴더 만들어주기 (유저데이터 넣을거임)
+    # 유저 데이터 보관용 서버별 폴더 생성
+    for guild in client.guilds:
+        Util.create_folder(f'./Servers/{guild.id}')
     client.remove_command('help')
     print(client.user.id)
     print("Bot Ready!")
@@ -24,13 +22,20 @@ async def on_ready():
 
 @client.command('캐릭터생성')
 async def create_character(ctx):
-    if Util.exist_user(ctx.author, players):
+    if _Player.check_exist_user(ctx.guild, ctx.author):
         return
-    else:
-        player = Player(ctx.author)
-        players.append(player)
-        msg = Dialog.get_dialog('prologue').format(player.now_location, ctx.author.name)
+    player = Player().init_player(ctx.author)
+    _Player.create_player_data(ctx.guild, player)
+    msg = Dialog.get_dialog('prologue').format(player.now_location, ctx.author.name)
     await ctx.send(Util.change_font_cs(msg))
+
+
+@client.command('정보')
+async def show_user_info(ctx):
+    if not _Player.check_exist_user(ctx.guild, ctx.author):
+        return
+    player = Player().from_json(_Player.get_player_data(ctx.guild, ctx.author))
+    await ctx.send(embed=player.show_base_info())
 
 
 @client.command('이동')
